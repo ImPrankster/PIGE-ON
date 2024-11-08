@@ -1,0 +1,24 @@
+{
+    "fileFormatVersion": "1.0.0",
+    "itemInfoEntries": {
+        "4BA74197-CE11-4273-AE72-B5DD6456FE4C": {
+            "author": "com.apple.CoreML",
+            "description": "CoreML Model Specification",
+            "name": "PigeonDetector.mlmodel",
+            "path": "com.apple.CoreML/PigeonDetector.mlmodel"
+        },
+        "84F37B05-D873-4470-9455-73F3A60A8D6D": {
+            "author": "com.apple.CoreML",
+            "description": "External FeatureDescription Overlay",
+            "name": "FeatureDescriptions.json",
+            "path": "com.apple.CoreML/FeatureDescriptions.json"
+        },
+        "D176167A-BBB5-4EBE-8C5A-153E0FF25221": {
+            "author": "com.apple.CoreML",
+            "description": "External Metadata Overlay",
+            "name": "Metadata.json",
+            "path": "com.apple.CoreML/Metadata.json"
+        }
+    },
+    "rootModelIdentifier": "4BA74197-CE11-4273-AE72-B5DD6456FE4C"
+}
