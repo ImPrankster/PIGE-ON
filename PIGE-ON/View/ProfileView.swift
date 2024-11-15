@@ -18,6 +18,7 @@ struct Profile: View {
 
 struct ProfileForm: View {
     @StateObject var viewModel = ProfileModel()
+    private var user = supabase.auth.currentUser
 
     var body: some View {
         Form {
@@ -48,6 +49,13 @@ struct ProfileForm: View {
                 TextEditor(
                     text: $viewModel.aboutMe
                 )
+            }
+            if(user != nil) {
+                Section(
+                    header: Text("User email")
+                ) {
+                    Text("Creating profile for \(user?.email ?? "")")
+                }
             }
         }
         .navigationTitle("Profile")
