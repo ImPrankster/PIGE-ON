@@ -50,12 +50,27 @@ struct ProfileForm: View {
                     text: $viewModel.aboutMe
                 )
             }
-            if(user != nil) {
+            if user != nil {
                 Section(
                     header: Text("User email")
                 ) {
                     Text("Creating profile for \(user?.email ?? "")")
                 }
+            }
+            Section {
+                Button(
+                    action: {
+                        Task {
+                            try await viewModel.submitProfile()
+                        }
+                    },
+                    label: {
+                        HStack {
+                            Spacer()
+                            Text("Submit")
+                            Spacer()
+                        }
+                    })
             }
         }
         .navigationTitle("Profile")

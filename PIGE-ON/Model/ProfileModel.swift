@@ -6,6 +6,7 @@ An observable state object that contains profile details.
 */
 
 import CoreTransferable
+import Foundation
 import PhotosUI
 import SwiftUI
 
@@ -115,6 +116,29 @@ class ProfileModel: ObservableObject {
         } catch {
             self.imageState = .failure(AppError.UnableToPredict)
             print("Can not make Image prediction")
+        }
+    }
+
+    func submitProfile() async throws {
+        service.request(
+            .hello
+        ) {
+            result in
+            switch result {
+            case let .success(response):
+                do {
+                    let filteredResponse =
+                        try response.filterSuccessfulStatusCodes()
+                    let json: [String: Any] = try filteredResponse.mapJSON() as! [String : Any]  // type Any
+
+                    // Do something with your json.
+                    print(json["user"] ?? "None")
+                } catch {
+                    print("Failed with status code \(response.statusCode)")
+                }
+            case let .failure(err):
+                print(err.errorDescription ?? "Error happened")
+            }
         }
     }
 }

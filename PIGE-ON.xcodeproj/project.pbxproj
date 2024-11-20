@@ -10,6 +10,8 @@
 		7B0C932A2CDE696C00557FAB /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 7B0C93292CDE696C00557FAB /* Auth */; };
 		7B0C932C2CDE696C00557FAB /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 7B0C932B2CDE696C00557FAB /* Storage */; };
 		7B0C932E2CDE696C00557FAB /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 7B0C932D2CDE696C00557FAB /* Supabase */; };
+		7B61EF882CED642400FEEECE /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 7B61EF872CED642400FEEECE /* Moya */; };
+		7B61EF8A2CED642400FEEECE /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 7B61EF892CED642400FEEECE /* ReactiveMoya */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 			files = (
 				7B0C932C2CDE696C00557FAB /* Storage in Frameworks */,
 				7B0C932A2CDE696C00557FAB /* Auth in Frameworks */,
+				7B61EF882CED642400FEEECE /* Moya in Frameworks */,
+				7B61EF8A2CED642400FEEECE /* ReactiveMoya in Frameworks */,
 				7B0C932E2CDE696C00557FAB /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,6 +94,8 @@
 				7B0C93292CDE696C00557FAB /* Auth */,
 				7B0C932B2CDE696C00557FAB /* Storage */,
 				7B0C932D2CDE696C00557FAB /* Supabase */,
+				7B61EF872CED642400FEEECE /* Moya */,
+				7B61EF892CED642400FEEECE /* ReactiveMoya */,
 			);
 			productName = "PIGE-ON";
 			productReference = 7B9930B42CD52EA500102FE2 /* PIGE-ON.app */;
@@ -121,6 +127,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				7B0C93282CDE696C00557FAB /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				7B61EF862CED642400FEEECE /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7B9930B52CD52EA500102FE2 /* Products */;
@@ -366,6 +373,14 @@
 				minimumVersion = 2.5.1;
 			};
 		};
+		7B61EF862CED642400FEEECE /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -383,6 +398,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7B0C93282CDE696C00557FAB /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Supabase;
+		};
+		7B61EF872CED642400FEEECE /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B61EF862CED642400FEEECE /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		7B61EF892CED642400FEEECE /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B61EF862CED642400FEEECE /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
