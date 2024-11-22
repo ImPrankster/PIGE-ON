@@ -1,5 +1,5 @@
-import { Request } from "express";
-import { supabase } from "./supabase";
+import type { Request } from "express";
+import { supabase } from "./supabase.js";
 
 export const getSessionContext = async (req: Request) => {
   const accessToken = req.headers["x-access-token"] as string;

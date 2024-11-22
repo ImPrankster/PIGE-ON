@@ -1,7 +1,7 @@
 import { sql } from "drizzle-orm";
-import { RequestHandler } from "express";
-import { db } from "~/db";
-import { profile } from "~/db/schema";
+import type { RequestHandler } from "express";
+import { db } from "../db/index.js";
+import { profile } from "../db/schema.js";
 
 export const profiles: Record<string, RequestHandler> = {
   fetchRandom: async (_, res) => {

@@ -1,8 +1,8 @@
-import { RequestHandler } from "express";
-import { getSessionContext } from "~/lib/auth";
+import type { RequestHandler } from "express";
+import { getSessionContext } from "../lib/auth.js";
 import z from "zod";
-import { db } from "~/db";
-import { profile } from "~/db/schema";
+import { db } from "../db/index.js";
+import { profile } from "../db/schema.js";
 
 const profileSchema = z.object({
   firstName: z.string().min(1),
