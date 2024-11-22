@@ -1,8 +1,8 @@
 import express from "express";
-import { authMiddleware, loggingMiddleware } from "./middleware";
-import { getSessionContext } from "./lib/auth";
+import { authMiddleware, loggingMiddleware } from "~/middleware";
+import { getSessionContext } from "~/lib/auth";
 import bodyParser from "body-parser";
-import { insertProfileRoute } from "./route/insert-profile";
+import { insertProfileRoute } from "~/route/insert-profile";
 
 const app = express();
 const port = process.env.PORT || 3005;

@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { getSessionContextSafe } from "./lib/auth";
+import { getSessionContextSafe } from "~/lib/auth";
 
 export const authMiddleware: RequestHandler = async (req, res, next) => {
   const sessionResponse = await getSessionContextSafe(req);
