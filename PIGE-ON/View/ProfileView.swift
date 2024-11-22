@@ -10,14 +10,13 @@ import SwiftUI
 
 struct Profile: View {
     var body: some View {
-        NavigationView {
-            ProfileForm()
-        }
+        ProfileForm()
     }
 }
 
 struct ProfileForm: View {
     @StateObject var viewModel = ProfileModel()
+    let appState = AppState.global
     private var user = supabase.auth.currentUser
 
     var body: some View {
@@ -50,13 +49,6 @@ struct ProfileForm: View {
                     text: $viewModel.aboutMe
                 )
             }
-            if user != nil {
-                Section(
-                    header: Text("User email")
-                ) {
-                    Text("Creating profile for \(user?.email ?? "")")
-                }
-            }
             Section {
                 Button(
                     action: {
@@ -74,6 +66,11 @@ struct ProfileForm: View {
             }
         }
         .navigationTitle("Profile")
+        .onAppear(perform: {
+            if user == nil {
+                appState.appState = .auth
+            }
+        })
     }
 }
 

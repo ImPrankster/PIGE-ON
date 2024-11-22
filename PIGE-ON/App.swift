@@ -19,11 +19,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct PIGE_ONApp: App {
-    var appState = AppState()
+    var appState = AppState.global
 
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(appState).onOpenURL(
+            ContentView().onOpenURL(
                 perform: handleURL)
         }
     }

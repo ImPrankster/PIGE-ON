@@ -9,6 +9,7 @@ import Moya
 
 enum Service {
     case hello
+    case insertProfile(firstName: String, lastName: String, description: String)
 }
 
 extension Service: TargetType {
@@ -17,7 +18,9 @@ extension Service: TargetType {
     var path: String {
         switch self {
         case .hello:
-            return "hello"
+            return "/"
+        case .insertProfile:
+            return "/insert-profile"
         }
     }
 
@@ -25,6 +28,8 @@ extension Service: TargetType {
         switch self {
         case .hello:
             return .get
+        case .insertProfile:
+            return .post
         }
     }
 
@@ -32,6 +37,10 @@ extension Service: TargetType {
         switch self {
         case .hello:
             return .requestPlain
+        case .insertProfile(let firstName, let lastName, let description):
+            return .requestParameters(
+                parameters: ["firstName": firstName, "lastName": lastName, "description": description],
+                encoding: JSONEncoding.default)
         }
     }
 

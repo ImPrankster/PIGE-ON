@@ -15,6 +15,8 @@ class ProfileModel: ObservableObject {
 
     let pigeonDetector = ObjectDetector()
 
+    let appState = AppState.global
+    
     // MARK: - Profile Details
 
     @Published var firstName: String = ""
@@ -121,21 +123,14 @@ class ProfileModel: ObservableObject {
 
     func submitProfile() async throws {
         service.request(
-            .hello
+            .insertProfile(
+                firstName: firstName, lastName: lastName, description: aboutMe)
         ) {
             result in
             switch result {
-            case let .success(response):
-                do {
-                    let filteredResponse =
-                        try response.filterSuccessfulStatusCodes()
-                    let json: [String: Any] = try filteredResponse.mapJSON() as! [String : Any]  // type Any
-
-                    // Do something with your json.
-                    print(json["user"] ?? "None")
-                } catch {
-                    print("Failed with status code \(response.statusCode)")
-                }
+            case .success(_):
+                print("Successful")
+                self.appState.appState = .profileComplete
             case let .failure(err):
                 print(err.errorDescription ?? "Error happened")
             }

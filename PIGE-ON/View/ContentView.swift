@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var appState: AppState
+    @StateObject var appState = AppState.global
 
     var body: some View {
         NavigationStack {
@@ -25,6 +25,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    @Previewable var appState = AppState()
-    ContentView().environmentObject(appState)
+    ContentView()
 }

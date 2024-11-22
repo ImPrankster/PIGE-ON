@@ -11,5 +11,6 @@ enum AppStateEnum: String {
 }
 
 class AppState: ObservableObject {
+    static let global = AppState()
     @AppStorage("app_state") var appState: AppStateEnum = .auth
 }
