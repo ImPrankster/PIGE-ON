@@ -10,6 +10,7 @@ import Moya
 enum Service {
     case hello
     case insertProfile(firstName: String, lastName: String, description: String)
+    case fetchProfileRandom
 }
 
 extension Service: TargetType {
@@ -21,12 +22,14 @@ extension Service: TargetType {
             return "/"
         case .insertProfile:
             return "/insert-profile"
+        case .fetchProfileRandom:
+            return "/fetch-profile-random"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .hello:
+        case .hello, .fetchProfileRandom:
             return .get
         case .insertProfile:
             return .post
@@ -41,6 +44,8 @@ extension Service: TargetType {
             return .requestParameters(
                 parameters: ["firstName": firstName, "lastName": lastName, "description": description],
                 encoding: JSONEncoding.default)
+        case .fetchProfileRandom:
+            return .requestPlain
         }
     }
 

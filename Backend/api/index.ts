@@ -1,8 +1,10 @@
 import express from "express";
+import bodyParser from "body-parser";
+
 import { authMiddleware, loggingMiddleware } from "../src/middleware.js";
 import { getSessionContext } from "../src/lib/auth.js";
-import bodyParser from "body-parser";
 import { insertProfileRoute } from "../src/route/insert-profile.js";
+import { profiles } from "../src/route/fetch-profile.js";
 
 const app = express();
 const port = process.env.PORT || 3005;
@@ -26,3 +28,5 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/insert-profile", insertProfileRoute);
+
+app.get("/fetch-profile-random", profiles.fetchRandom);

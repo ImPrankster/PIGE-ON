@@ -17,6 +17,8 @@ struct ContentView: View {
                 AuthView()
             case .profileCreation:
                 Profile()
+            case .profileComplete:
+                BrowseView()
             default:
                 EmptyView()
             }
