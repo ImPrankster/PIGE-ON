@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 import { insertProfileRoute } from "./route/insert-profile";
 
 const app = express();
-const port = 3005;
+const port = process.env.PORT || 3005;
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
