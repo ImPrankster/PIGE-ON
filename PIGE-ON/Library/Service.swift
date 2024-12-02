@@ -8,9 +8,9 @@ import Foundation
 import Moya
 
 enum Service {
-    case hello
     case insertProfile(firstName: String, lastName: String, description: String)
     case fetchProfileRandom
+    case fetchProfileRandomArray(count: Int)
 }
 
 extension Service: TargetType {
@@ -18,18 +18,18 @@ extension Service: TargetType {
 
     var path: String {
         switch self {
-        case .hello:
-            return "/"
         case .insertProfile:
             return "/insert-profile"
         case .fetchProfileRandom:
             return "/fetch-profile-random"
+        case .fetchProfileRandomArray:
+            return "/fetch-profile-random-array"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .hello, .fetchProfileRandom:
+        case .fetchProfileRandom, .fetchProfileRandomArray:
             return .get
         case .insertProfile:
             return .post
@@ -38,14 +38,18 @@ extension Service: TargetType {
 
     var task: Moya.Task {
         switch self {
-        case .hello:
-            return .requestPlain
         case .insertProfile(let firstName, let lastName, let description):
             return .requestParameters(
-                parameters: ["firstName": firstName, "lastName": lastName, "description": description],
+                parameters: [
+                    "firstName": firstName, "lastName": lastName,
+                    "description": description,
+                ],
                 encoding: JSONEncoding.default)
         case .fetchProfileRandom:
             return .requestPlain
+        case .fetchProfileRandomArray(let count):
+            return .requestParameters(
+                parameters: ["count": count], encoding: JSONEncoding.default)
         }
     }
 

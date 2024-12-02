@@ -10,7 +10,7 @@ const profileSchema = z.object({
   description: z.string().min(1),
 });
 
-export const insertProfileRoute: RequestHandler = async (req, res) => {
+export const insertProfile: RequestHandler = async (req, res) => {
   const session = await getSessionContext(req);
   const { firstName, lastName, description } = profileSchema.parse(req.body);
   try {
