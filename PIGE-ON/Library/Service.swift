@@ -29,9 +29,9 @@ extension Service: TargetType {
 
     var method: Moya.Method {
         switch self {
-        case .fetchProfileRandom, .fetchProfileRandomArray:
+        case .fetchProfileRandom:
             return .get
-        case .insertProfile:
+        case .insertProfile, .fetchProfileRandomArray:
             return .post
         }
     }

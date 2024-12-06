@@ -11,16 +11,15 @@ struct CardView: View {
     @State private var offset = CGSize.zero
     @State private var color: Color = .black
     var person: ProfileInfo
-    var onSwipeLeft: (() -> Void)?
-    var onSwipeRight: (() -> Void)?
+    var onSwipeLeft: (() -> Void)
+    var onSwipeRight: (() -> Void)
 
     var body: some View {
         ZStack {
             Rectangle()
                 .frame(width: 320, height: 420)
-                .border(.white, width: 1.0)
                 .clipShape(.rect(cornerRadius: 32))
-                .foregroundColor(color.opacity(0.9))
+                .foregroundColor(color)
             HStack {
                 Text(person.firstName)
                     .font(.largeTitle)
@@ -53,11 +52,11 @@ struct CardView: View {
     func swipeCard(width: CGFloat) {
         switch width {
         case -500...(-150):
-            print("\(person) removed")
             offset = CGSize(width: -500, height: 0)
+            onSwipeLeft()
         case 150...500:
-            print("\(person) added")
             offset = CGSize(width: 500, height: 0)
+            onSwipeRight()
         default:
             offset = .zero
         }
@@ -80,7 +79,11 @@ struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         CardView(
             person: ProfileInfo(
-                userId: "111", firstName: "Leo", lastName: "Wang",
-                description: "Cool"))
+                uniqueId: UUID(), userId: "111", firstName: "Leo",
+                lastName: "Wang",
+                description: "Cool"
+            ),
+            onSwipeLeft: {}, onSwipeRight: {}
+        )
     }
 }

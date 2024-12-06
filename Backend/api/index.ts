@@ -22,4 +22,4 @@ app.post("/insert-profile", insertProfile);
 
 app.get("/fetch-profile-random", profiles.fetchRandom);
 
-app.get("/fetch-profile-random-array", profiles.fetchRandomArray);
+app.post("/fetch-profile-random-array", profiles.fetchRandomArray);
