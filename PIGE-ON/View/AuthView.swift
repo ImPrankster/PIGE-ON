@@ -28,22 +28,33 @@ struct AuthView: View {
     @State private var signInUrl: URL = .init(string: "https://randomUrl")!
 
     var body: some View {
-        VStack {
-            Button("Login with Github") {
-                Task {
-                    do {
-                        signInUrl = try supabase.auth.getOAuthSignInURL(
-                            provider: .github,
-                            redirectTo: URL(string: "pigeon://auth-callback")!)
-                        showSafari = true
-                    } catch {
-                        print("Sign in error")
+        ZStack {
+            Image("BgImage")
+                .resizable()
+                .ignoresSafeArea()
+            VStack {
+                Text("Start Meeting New Pigeons TODAY")
+                    .font(.system(size: 26, weight: .bold, design: .rounded))
+                    .foregroundStyle(.black).padding()
+                Spacer()
+                Button("Sign In") {
+                    Task {
+                        do {
+                            signInUrl = try supabase.auth.getOAuthSignInURL(
+                                provider: .github,
+                                redirectTo: URL(
+                                    string: "pigeon://auth-callback")!)
+                            showSafari = true
+                        } catch {
+                            print("Sign in error")
+                        }
                     }
-                }
-            }.buttonStyle(.borderedProminent)
-        }.sheet(isPresented: $showSafari) {
-            SafariView(url: $signInUrl)
-        }.padding().navigationTitle("Login")
+                }.buttonStyle(BigButton(fill: Color.orange))
+                Spacer()
+            }.sheet(isPresented: $showSafari) {
+                SafariView(url: $signInUrl)
+            }.padding()
+        }
     }
 }
 

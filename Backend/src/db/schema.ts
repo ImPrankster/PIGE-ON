@@ -10,3 +10,12 @@ export const profile = pgTable("profile", {
   lastName: text("last_name").default("").notNull(),
   description: text().default("").notNull(),
 });
+
+export const likes = pgTable("likes", {
+  id: uuid().defaultRandom().primaryKey().notNull(),
+  profileId: uuid("profile_id").notNull(),
+  userId: uuid("user_id").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    .defaultNow()
+    .notNull(),
+});

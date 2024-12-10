@@ -3,7 +3,9 @@ import bodyParser from "body-parser";
 
 import { authMiddleware, loggingMiddleware } from "../src/middleware.js";
 import { insertProfile } from "../src/route/insert-profile.js";
-import { profiles } from "../src/route/fetch-profile.js";
+import { fetchProfileRandomArray } from "../src/route/fetch-profile.js";
+import { insertLike } from "../src/route/insert-like.js";
+import { fetchLikes } from "../src/route/fetch-likes.js";
 
 const app = express();
 const port = process.env.PORT || 3005;
@@ -16,10 +18,14 @@ app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
 
-app.use("/insert-profile", authMiddleware);
+app.post("/insert-profile", authMiddleware, insertProfile);
 
-app.post("/insert-profile", insertProfile);
+app.post(
+  "/fetch-profile-random-array",
+  authMiddleware,
+  fetchProfileRandomArray
+);
 
-app.get("/fetch-profile-random", profiles.fetchRandom);
+app.post("/insert-like", authMiddleware, insertLike);
 
-app.post("/fetch-profile-random-array", profiles.fetchRandomArray);
+app.get("/fetch-likes", authMiddleware, fetchLikes);

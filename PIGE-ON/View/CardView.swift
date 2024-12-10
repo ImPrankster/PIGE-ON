@@ -16,20 +16,34 @@ struct CardView: View {
 
     var body: some View {
         ZStack {
-            Rectangle()
-                .frame(width: 320, height: 420)
-                .clipShape(.rect(cornerRadius: 32))
-                .foregroundColor(color)
-            HStack {
-                Text(person.firstName)
-                    .font(.largeTitle)
+            color
+            Image("DefaultProfile").resizable().opacity(0.3)
+            VStack{
+                Spacer()
+                HStack {
+                    Text(person.firstName)
+                        .font(.largeTitle)
+                        .foregroundColor(.white)
+                        .bold()
+                    Image(systemName: "heart.fill")
+                        .foregroundColor(.red)
+                    Text(person.lastName)
+                        .font(.largeTitle)
+                        .foregroundColor(.white)
+                        .bold()
+                }.lineLimit(1)
+                Spacer()
+                Text(person.description)
+                    .font(.headline)
+                    .fontDesign(.serif)
                     .foregroundColor(.white)
                     .bold()
-                Image(systemName: "heart.fill")
-                    .foregroundColor(.red)
-            }
+                Spacer()
+            }.padding(20)
 
         }
+        .frame(width: 320, height: 420)
+        .clipShape(.rect(cornerRadius: 32))
         .offset(x: offset.width * 1, y: offset.height * 0.4)
         .rotationEffect(.degrees(Double(offset.width / 40)))
         .gesture(

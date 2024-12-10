@@ -9,8 +9,9 @@ import Moya
 
 enum Service {
     case insertProfile(firstName: String, lastName: String, description: String)
-    case fetchProfileRandom
     case fetchProfileRandomArray(count: Int)
+    case insertLike(profileId:String)
+    case fetchLike
 }
 
 extension Service: TargetType {
@@ -20,19 +21,21 @@ extension Service: TargetType {
         switch self {
         case .insertProfile:
             return "/insert-profile"
-        case .fetchProfileRandom:
-            return "/fetch-profile-random"
         case .fetchProfileRandomArray:
             return "/fetch-profile-random-array"
+        case .insertLike:
+            return "/insert-like"
+        case .fetchLike:
+            return "/fetch-likes"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .fetchProfileRandom:
-            return .get
-        case .insertProfile, .fetchProfileRandomArray:
+        case .insertProfile, .fetchProfileRandomArray, .insertLike:
             return .post
+        case .fetchLike:
+            return .get
         }
     }
 
@@ -45,11 +48,15 @@ extension Service: TargetType {
                     "description": description,
                 ],
                 encoding: JSONEncoding.default)
-        case .fetchProfileRandom:
-            return .requestPlain
         case .fetchProfileRandomArray(let count):
             return .requestParameters(
                 parameters: ["count": count], encoding: JSONEncoding.default)
+        case .insertLike(let profileId):
+            return .requestParameters(parameters: [
+                "profileId": profileId
+            ], encoding: JSONEncoding.default)
+        case .fetchLike:
+            return .requestPlain
         }
     }
 

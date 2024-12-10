@@ -62,15 +62,17 @@ struct ProfileForm: View {
                             Text("Submit")
                             Spacer()
                         }
-                    })
-            }
-        }
-        .navigationTitle("Profile")
-        .onAppear(perform: {
-            if user == nil {
-                appState.appState = .auth
-            }
-        })
+                    }
+                ).buttonStyle(BigButton())
+            }.listRowBackground(Color.clear)
+            Image("ProfilePage")
+                .resizable().scaledToFit().listRowBackground(Color.clear)
+        }.scrollContentBackground(.hidden)
+            .onAppear(perform: {
+                if user == nil {
+                    appState.appState = .auth
+                }
+            })
     }
 }
 
