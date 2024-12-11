@@ -28,9 +28,7 @@ struct BigButton: ButtonStyle {
 }
 
 #Preview {
-    Button(
-        action: {}, label: { Image(systemName: "heart.fill") }
-    ).buttonStyle(
+    Button("COOL BUTTON", systemImage: "heart.fill") {}.buttonStyle(
         BigButton(
             fill: Color.cyan
         ))
